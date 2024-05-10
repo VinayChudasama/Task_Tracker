@@ -1,35 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Login from "./core/components/authentication/Login";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Image, Text } from "@mantine/core";
+import Logout from "./core/components/authentication/Logout";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { user, isAuthenticated } = useAuth0();
+  console.log(user?.role[0]);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {!isAuthenticated && <Login></Login>}
+      <Image radius="md" h={200} w="auto" fit="contain" src={user?.picture} />
+      <Text> {user?.name}</Text>
+      {isAuthenticated && <Logout></Logout>}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
