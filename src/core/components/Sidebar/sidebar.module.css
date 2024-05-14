@@ -1,0 +1,14 @@
+.navbar {
+  background-color: light-dark(
+    var(--mantine-color-white),
+    var(--mantine-color-dark-6)
+  );
+
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--mantine-color-gray-3);
+}
+.footer {
+  margin-top: auto;
+}

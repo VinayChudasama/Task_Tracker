@@ -1,19 +1,36 @@
-import Login from "./core/components/authentication/Login";
+import {
+  Button,
+  Flex,
+  Group,
+  Paper,
+  useMantineColorScheme,
+} from "@mantine/core";
+
+import { Sidebar } from "./core/components/Sidebar/sidebar";
+import { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Image, Text } from "@mantine/core";
-import Logout from "./core/components/authentication/Logout";
 
 function App() {
-  const { user, isAuthenticated } = useAuth0();
-  console.log(user?.role[0]);
+  const { setColorScheme } = useMantineColorScheme();
+  const { isLoading, isAuthenticated, loginWithRedirect } = useAuth0();
 
+  useEffect(() => {
+    if (!isAuthenticated && !isLoading) {
+      loginWithRedirect();
+    }
+  }, [isLoading]);
   return (
-    <>
-      {!isAuthenticated && <Login></Login>}
-      <Image radius="md" h={200} w="auto" fit="contain" src={user?.picture} />
-      <Text> {user?.name}</Text>
-      {isAuthenticated && <Logout></Logout>}
-    </>
+    <Flex direction="row" h={"100%"}>
+      <Sidebar />
+      <Paper>
+        <Group>
+          <Button variant="light" onClick={() => setColorScheme("light")}>
+            Light
+          </Button>
+          <Button onClick={() => setColorScheme("dark")}>Dark</Button>
+        </Group>
+      </Paper>
+    </Flex>
   );
 }
 
