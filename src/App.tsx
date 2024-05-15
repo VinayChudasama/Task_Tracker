@@ -3,6 +3,7 @@ import { Box, Container, Flex, Paper } from "@mantine/core";
 import { Sidebar } from "./core/components/Sidebar/sidebar";
 import { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import AppRoutes from "./AppRoutes";
 
 function App() {
   const { isLoading, isAuthenticated, loginWithRedirect } = useAuth0();
@@ -23,7 +24,7 @@ function App() {
           size="1440px"
           w="100%"
         >
-         Content Here
+        
         </Container>
       </Box>
     </Flex>
