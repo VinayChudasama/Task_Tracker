@@ -7,6 +7,9 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { CLIENT_ID, DOMAIN_ID } from "./environments/environment.ts";
 import { MantineProvider } from "@mantine/core";
 import { resolver, theme } from "./core/utility/constants/core.constant.ts";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./store/store.ts";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -18,13 +21,17 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         redirect_uri: window.location.origin,
       }}
     >
-      <MantineProvider 
-        defaultColorScheme="light"
-        theme={theme}
-        cssVariablesResolver={resolver}
-      >
-        <App />
-      </MantineProvider>
+      <BrowserRouter>
+      <Provider store={store}>
+        <MantineProvider
+          defaultColorScheme="light"
+          theme={theme}
+          cssVariablesResolver={resolver}
+        >
+          <App />
+        </MantineProvider>
+        </Provider>
+      </BrowserRouter>
     </Auth0Provider>
   </React.StrictMode>
 );

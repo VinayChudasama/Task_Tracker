@@ -3,7 +3,7 @@ import { CSSVariablesResolver, createTheme } from "@mantine/core";
 export const theme = createTheme({
   primaryColor: "primary",
   primaryShade: 6,
-  fontFamily: "Inter, sans-serif",
+  fontFamily: "Poppins, sans-serif",
   colors: {
     primary: [
       "#e1faff",
@@ -29,11 +29,13 @@ export const resolver: CSSVariablesResolver = () => ({
   dark: {
     "--mantine-color-badge-text-purple": "#ffffff",
     "--mantine-color-primary-dark": "#ffffff",
-    "--mantine-color-gray-3" : "#D4D4D2",
+    "--mantine-color-gray-3" : "#4a4a4a",
+    
     "--button-color":"#000"
   },
   light: {
     "--mantine-color-gray-3" : "#D4D4D2",
-    "--button-color":"#000"
+    "--mantine-color-blue-filled":"#000",
+    "--mantine-color-gray-2" : "#F5F6F7",
   },
 });

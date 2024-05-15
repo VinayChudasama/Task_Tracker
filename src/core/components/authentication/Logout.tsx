@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { Button, UnstyledButton } from "@mantine/core";
+import { Button } from "@mantine/core";
 import { IconLogout } from "@tabler/icons-react";
 
 function Logout() {
@@ -12,6 +12,8 @@ function Logout() {
       className="logout-btn"
       variant="transparent"
       size="md"
+      justify="flex-start"
+      fw={500}
       onClick={() =>
         logout({ logoutParams: { returnTo: window.location.origin } })
       }
