@@ -1,17 +1,20 @@
 import { useForm } from "@mantine/form";
 
 import { Button, Group, Modal, TextInput } from "@mantine/core";
-
-const AddTasks = ({
-  opened,
-  close,
-}: {
+import { useAddTaskMutation } from "../utility/service/taskList.service";
+interface IAddTask {
   opened: boolean;
   close: () => void;
-}) => {
+}
+
+const AddTasks = ({ opened, close }: IAddTask) => {
+  const [addTask] = useAddTaskMutation();
   const form = useForm({
     initialValues: {
-      taskName: "",
+      TaskName: "",
+      AssignTo: "Altu Faltu",
+      Status: "New",
+      CreatedAt: new Date(),
     },
   });
   const handleCancel = () => {
@@ -19,7 +22,8 @@ const AddTasks = ({
     close();
   };
   const handleFormSubmit = (values: any) => {
-    console.log(values);
+    addTask(values);
+    close();
   };
 
   return (
@@ -37,28 +41,20 @@ const AddTasks = ({
         blur: 3,
       }}
     >
-      <form
-        onSubmit={form.onSubmit((values) => handleFormSubmit(values))}
-      >
-      <TextInput
-        label="Task Name"
-        placeholder="Task Name"
-        key={form.key("taskName")}
-        withAsterisk
-        {...form.getInputProps("taskName")}
-      />
-       <Group justify="flex-end" mt="lg">
-                      <Button
-                        variant="default"
-                        onClick={handleCancel}
-                        type="submit"
-                      >
-                        Cancel
-                      </Button>
-                      <Button  type="submit">
-                       Submit
-                      </Button>
-                    </Group>
+      <form onSubmit={form.onSubmit((values) => handleFormSubmit(values))}>
+        <TextInput
+          label="Task Name"
+          placeholder="Task Name"
+          key={form.key("TaskName")}
+          withAsterisk
+          {...form.getInputProps("TaskName")}
+        />
+        <Group justify="flex-end" mt="lg">
+          <Button variant="default" onClick={handleCancel} type="submit">
+            Cancel
+          </Button>
+          <Button type="submit">Submit</Button>
+        </Group>
       </form>
     </Modal>
   );
