@@ -8,11 +8,14 @@ import { Box, Button, Flex } from "@mantine/core";
 import { IconFileArrowRight, IconPlus } from "@tabler/icons-react";
 import * as XLSX from "xlsx";
 import SearchBox from "../../shared/components/SearchBox";
+import { useDisclosure } from "@mantine/hooks";
+import AddTasks from "./components/AddTasks";
 
 function MyTaskList() {
   const { data: tableData } = useGetTasksQuery();
   const [tableList, setTableList] = useState<ITask[]>([]);
   const Breadcrumbitems = [{ title: "My Tasks", href: "#" }];
+  const [opened, { open, close }] = useDisclosure(false);
 
   // Function to Export Data to Excel Sheet
   const exportToExcel = () => {
@@ -100,12 +103,14 @@ function MyTaskList() {
             size="sm"
             style={{flexShrink:'0'}}
             variant="filled"
+            onClick={open}
             leftSection={<IconPlus size={16} />}
           >
             Add New Task
           </Button>
         </Flex>
         <Box h={"100%"} style={{ overflow: "auto" }}>
+        <AddTasks opened={opened} close={close} />
           <DataTable data={tableList} columns={taskTableData}></DataTable>
         </Box>
       </Flex>
