@@ -13,15 +13,24 @@ export const taskApi = createApi({
     }),
     getTasksById: builder.query<ITask, string>({
       query: (id: string) => ({ url: `/taskList/${id}.json`, method: "GET" }),
+      providesTags:['TaskList']
     }),
     deleteTask: builder.mutation<void, string>({
       query: (taskId: string) => ({
         url: `/taskList/${taskId}.json`,
         method: "DELETE",
       }),
-      invalidatesTags:["TaskList"]
+      invalidatesTags: ["TaskList"],
+    }),
+    addTask: builder.mutation<ITask, ITask>({
+      query: (taskDetails: ITask) => ({
+        url: "/taskList.json",
+        method: "POST",
+        body: taskDetails,
+      }),
+      invalidatesTags: ["TaskList"],
     }),
   }),
 });
-export const { useGetTasksQuery, useGetTasksByIdQuery, useDeleteTaskMutation } =
+export const { useGetTasksQuery, useGetTasksByIdQuery, useDeleteTaskMutation , useAddTaskMutation} =
   taskApi;
