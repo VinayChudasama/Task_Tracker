@@ -7,6 +7,7 @@ import Breadcrumb from "../../shared/components/Breadcrumb";
 import { Box, Button, Flex } from "@mantine/core";
 import { IconFileArrowRight, IconPlus } from "@tabler/icons-react";
 import * as XLSX from "xlsx";
+import SearchBox from "../../shared/components/SearchBox";
 
 function MyTaskList() {
   const { data: tableData } = useGetTasksQuery();
@@ -67,23 +68,28 @@ function MyTaskList() {
   }, [tableData]);
 
   return (
-    <Flex direction="column" h="100%" >
+    <Flex direction="column" h="100%">
       <Breadcrumb data={Breadcrumbitems}></Breadcrumb>
       <Flex
         direction={"column"}
-        style={{ border: "1px solid var(--mantine-color-gray-3)",overflow:'hidden' }}
+        style={{
+          border: "1px solid var(--mantine-color-gray-3)",
+          overflow: "hidden",
+        }}
         h={"100%"}
         className="content-wrapper"
-       
       >
         <Flex
           p={16}
           style={{ borderBottom: "1px solid var(--mantine-color-gray-3)" }}
         >
+          <Box w={'100%'} mr={16}> <SearchBox data={tableList}></SearchBox></Box>
+         
           <Button
             ml="auto"
-            size="xs"
+            size="sm"
             variant="filled"
+            style={{flexShrink:'0'}}
             onClick={exportToExcel}
             leftSection={<IconFileArrowRight size={16} />}
           >
@@ -91,7 +97,8 @@ function MyTaskList() {
           </Button>
           <Button
             ml={16}
-            size="xs"
+            size="sm"
+            style={{flexShrink:'0'}}
             variant="filled"
             leftSection={<IconPlus size={16} />}
           >

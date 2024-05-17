@@ -15,7 +15,7 @@ function DataTable({ data, columns }: IProps) {
   return (
     <>
       {data && (
-        <Table className={`${classes.dataTable}`} stickyHeader stickyHeaderOffset={10}>
+        <Table className={`${classes.dataTable}`} stickyHeader stickyHeaderOffset={0}>
           <Table.Thead>
             <Table.Tr>
               {columns.map((column, index) => (
