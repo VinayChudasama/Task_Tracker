@@ -37,8 +37,14 @@ body {
   }
 }
 
-.content-wrapper{
+.main-wrapper{
   background-color: light-dark(
       var(--mantine-color-gray-2),
+      var(--mantine-color-dark-4));
+}
+.content-wrapper{
+  background-color: light-dark(
+      var(--mantine-color-white),
       var(--mantine-color-dark-6));
+      border-radius: 6px;
 }

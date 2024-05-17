@@ -17,12 +17,13 @@ import {
   IconSettings,
   IconUsers,
 } from "@tabler/icons-react";
-import classes from "./sidebar.module.css";
+import classes from "../../assets/styles/sidebar/sidebar.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
-import Logout from "../authentication/Logout";
-import Logo from "../../../assets/TaskTracker-Logo.png";
+import Logout from "./authentication/Logout";
+import Logo from "../../assets/TaskTracker-Logo 1.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { FileRoutes } from "../utility/enums/core.enums";
 
 export function Sidebar() {
   const { user, isAuthenticated } = useAuth0();
@@ -35,8 +36,8 @@ export function Sidebar() {
     console.log(colorScheme);
   };
   const data = [
-    { link: "/", label: "Home", icon: IconLayoutDashboard },
-    { link: "/", label: "My Tasks", icon: IconUsers },
+    { link: FileRoutes.HOME, label: "Home", icon: IconLayoutDashboard },
+    { link: FileRoutes.MY_TASKS, label: "My Tasks", icon: IconUsers },
     { link: "/", label: "My Team", icon: IconList },
     { link: "/", label: "Settings", icon: IconSettings },
   ];
@@ -64,7 +65,12 @@ export function Sidebar() {
         className={classes.header}
       >
         <Group justify="space-between" my={16}>
-          <Image h={25} w="auto" src={Logo} />
+          <Group gap={0}>
+            <Image h={25} w="auto" src={Logo} />
+            <Text fz={18} ml={12} fw={500}>Task</Text>
+            <Text  fz={18} ml={2} fw={300}>Tracker</Text>
+          </Group>
+
           <Burger
             size={"sm"}
             onClick={() => {
