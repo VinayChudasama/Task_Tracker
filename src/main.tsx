@@ -7,7 +7,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { CLIENT_ID, DOMAIN_ID } from "./environments/environment.ts";
 import { MantineProvider } from "@mantine/core";
 import { resolver, theme } from "./core/utility/constants/core.constant.ts";
-
+// import { variantColorResolver } from "./shared/common-components/StatusBadge.jsx";
 import { Provider } from "react-redux";
 import { store } from "./store/store.ts";
 import AppRoutes from "./AppRoutes.tsx";
@@ -22,7 +22,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         redirect_uri: window.location.origin,
       }}
     >
-
       <Provider store={store}>
         <MantineProvider
           defaultColorScheme="light"
@@ -32,7 +31,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <AppRoutes />
         </MantineProvider>
       </Provider>
-
     </Auth0Provider>
   </React.StrictMode>
 );

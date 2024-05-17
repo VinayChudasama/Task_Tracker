@@ -11,7 +11,7 @@ function Logout() {
       my={16}
       className="logout-btn"
       variant="transparent"
-      size="md"
+      size="sm"
       justify="flex-start"
       fw={500}
       onClick={() =>
