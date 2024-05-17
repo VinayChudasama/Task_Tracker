@@ -4,6 +4,7 @@ import { Sidebar } from "./core/components/Sidebar/sidebar";
 import { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import AppRoutes from "./AppRoutes";
+import ManageTask from "./features/taskManagement/components/ManageTask";
 
 function App() {
   const { isLoading, isAuthenticated, loginWithRedirect } = useAuth0();
@@ -16,7 +17,7 @@ function App() {
   return (
     <Flex direction="row" h={"100%"}>
       <Sidebar />
-      <Box w={"100%"} h={"100%"}  className="content-wrapper">
+      <Box w={"100%"} h={"100%"} className="content-wrapper">
         <Container
           px={20}
           py={20}
@@ -24,7 +25,7 @@ function App() {
           size="1440px"
           w="100%"
         >
-        
+          <ManageTask />
         </Container>
       </Box>
     </Flex>
